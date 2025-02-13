@@ -1,10 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Navigation {
     public String[] home = {"1. Ajouter un Restaurant", "2. Afficher un Restaurant", "100. Exit"};
     public Map<Integer, Runnable> homeOptions = new HashMap<>() {{
-        put(1, () -> sayHello());
+        put(1, () -> createRestaurant());
         put(2, () -> sayHello());
         put(3, () -> sayHello());
         put(4, () -> sayHello());
@@ -26,5 +27,17 @@ public class Navigation {
     }
     private void sayHello() {
         System.out.println("🔭Hello World!🔭");
+    }
+    private void createRestaurant() {
+        Scanner scannerNav = new Scanner(System.in);
+        System.out.println("Enter restaurant name: ");
+        String name = scannerNav.nextLine();
+        System.out.println("Enter restaurant address: ");
+        String address = scannerNav.nextLine();
+
+        System.out.println("🎇 you create a restaurant: 🎇");
+        this.printTab(this.home);
+
+        scannerNav.close();
     }
 }

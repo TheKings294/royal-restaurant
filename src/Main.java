@@ -1,5 +1,3 @@
-import Restaurants.Restaurant;
-
 import java.util.Scanner;
 
 public class Main {
@@ -15,5 +13,7 @@ public class Main {
             }
             navigation.choose(navigation.homeOptions, choice);
         }
+
+        scanner.close();
     }
 }
