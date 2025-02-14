@@ -63,7 +63,7 @@ public class Employe {
     }
     public void createFileEmploye(String path, String name) {
         try {
-            FileWriter fw = new FileWriter(path + "/" + name + "json");
+            FileWriter fw = new FileWriter(path + "/" + name + ".json");
             fw.write("{"+
                     "\"first-name\":\"" + firstName + "\","
                     + "\"last-name\":" + lastName + "\","

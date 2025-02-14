@@ -45,7 +45,7 @@ public class Restaurant {
     }
     public void createFileRestaurant(String path) {
         try {
-            FileWriter fw = new FileWriter(path + "info.json");
+            FileWriter fw = new FileWriter("info.json");
             fw.write("{"+
                     "\"name\":\"" + name + "\","
                     + "\"address\":" + address
