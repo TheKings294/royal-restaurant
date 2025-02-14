@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Dishes {
@@ -7,14 +11,14 @@ public class Dishes {
     private int calories;
     private String category;
     private int size;
-    private Date dateOfAdding;
+    private LocalDate dateOfAdding;
     private boolean status;
     private String[] ingredients;
     private String kitchenType;
     private int preparationTime;
     private int specialPrice;
 
-    public Dishes(String name, String description, int price, int calories, String category, int size, Date dateOfAdding, boolean status,
+    public Dishes(String name, String description, double price, int calories, String category, int size, LocalDate dateOfAdding, boolean status,
                   String[] ingredients, String kitchenType, int preparationTime, int specialPrice) {
         this.name = name;
         this.description = description;
@@ -65,10 +69,10 @@ public class Dishes {
     public void setSize(int size) {
         this.size = size;
     }
-    public Date getDateOfAdding() {
+    public LocalDate getDateOfAdding() {
         return dateOfAdding;
     }
-    public void setDateOfAdding(Date dateOfAdding) {
+    public void setDateOfAdding(LocalDate dateOfAdding) {
         this.dateOfAdding = dateOfAdding;
     }
     public String isStatus() {
@@ -100,5 +104,37 @@ public class Dishes {
     }
     public void setSpecialPrice(int specialPrice) {
         this.specialPrice = specialPrice;
+    }
+    public static String createDir(String path) {
+        File dir = new File(path + "/dishes");
+        dir.mkdir();
+        return dir.getAbsolutePath();
+    }
+    public void createFileDishes(String path, String name) {
+        String ingrediant = "{";
+        for (int i = 0; i < this.ingredients.length; i++) {
+            ingrediant += this.ingredients[i];
+            ingrediant += ",";
+        }
+        ingrediant += "}";
+        try {
+            FileWriter fw = new FileWriter(path + "/" + name + ".json");
+            fw.write("{"+
+                    "\"name\":\"" + this.name + "\","
+                    + "\"description\":" + this.description+ "," + "\""
+                    + "\"price\":\"" + this.price + "\","
+                    + "\"calories\":\"" + this.calories + "\","
+                    + "\"category\":\"" + this.category + "\","
+                    + "\"size\":\"" + this.size + "\","
+                    + "\"dateOfAdding\":\"" + this.dateOfAdding + "\","
+                    + "\"status\":\"" + this.status + "\","
+                    + "\"kitchenType\":\"" + this.kitchenType + "\","
+                    + "\"preparationTime\":\"" + this.preparationTime + "\","
+                    + "\"specialPrice\":\"" + this.specialPrice + "\""
+                    + "\"ingrediant\":\"" + this.ingredients.toString() + "\""
+                    + "}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
