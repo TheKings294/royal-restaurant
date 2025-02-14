@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Employe {
@@ -6,10 +10,10 @@ public class Employe {
     private String firstName;
     private String lastName;
     private String role;
-    private Date dateOfStartingJob;
+    private LocalDate dateOfStartingJob;
     private double salary;
 
-    public Employe(String firstName, String lastName, String role, Date dateOfStartingJob, double salary) {
+    public Employe(String firstName, String lastName, String role, LocalDate dateOfStartingJob, double salary) {
         Employe.number++;
         this.id = Employe.number;
         this.firstName = firstName;
@@ -28,7 +32,7 @@ public class Employe {
     public String getLastName() {
         return this.lastName;
     }
-    public Date getDateOfStartingJob() {
+    public LocalDate getDateOfStartingJob() {
         return this.dateOfStartingJob;
     }
     public String getSalary() {
@@ -46,10 +50,30 @@ public class Employe {
     public void setRole(String role) {
         this.role = role;
     }
-    public void setDateOfStartingJob(Date dateOfStartingJob) {
+    public void setDateOfStartingJob(LocalDate dateOfStartingJob) {
         this.dateOfStartingJob = dateOfStartingJob;
     }
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+    public static String createDir(String path) {
+        File dir = new File(path + "/employe");
+        dir.mkdir();
+        return dir.getAbsolutePath();
+    }
+    public void createFileEmploye(String path, String name) {
+        try {
+            FileWriter fw = new FileWriter(path + "/" + name + ".json");
+            fw.write("{"+
+                    "\"first-name\":\"" + firstName + "\","
+                    + "\"last-name\":" + lastName + "\","
+                    + "\"role\":" + role + "\","
+                    + "\"date\":" + dateOfStartingJob + "\","
+                    + "\"salary\":" + salary + "\","
+                    + "}");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
