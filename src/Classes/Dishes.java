@@ -1,8 +1,9 @@
+package Classes;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Dishes {
     private String name;
@@ -118,10 +119,10 @@ public class Dishes {
         }
         ingrediant += "}";
         try {
-            FileWriter fw = new FileWriter(path + "/" + name + ".json");
+            FileWriter fw = new FileWriter(path + "/" + name + ".txt");
             fw.write("{"+
                     "\"name\":\"" + this.name + "\","
-                    + "\"description\":" + this.description+ "," + "\""
+                    + "\"description\":\"" + this.description+ "," + "\","
                     + "\"price\":\"" + this.price + "\","
                     + "\"calories\":\"" + this.calories + "\","
                     + "\"category\":\"" + this.category + "\","
@@ -130,7 +131,7 @@ public class Dishes {
                     + "\"status\":\"" + this.status + "\","
                     + "\"kitchenType\":\"" + this.kitchenType + "\","
                     + "\"preparationTime\":\"" + this.preparationTime + "\","
-                    + "\"specialPrice\":\"" + this.specialPrice + "\""
+                    + "\"specialPrice\":\"" + this.specialPrice + "\","
                     + "\"ingrediant\":\"" + this.ingredients.toString() + "\""
                     + "}");
         } catch (IOException e) {

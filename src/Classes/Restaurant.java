@@ -1,3 +1,5 @@
+package Classes;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -16,7 +18,8 @@ public class Restaurant {
     public Restaurant(String name, String address, Menu menu, Employe employ) {
         this.name = name;
         this.address = address;
-
+        this.id = numberOfRestaurant;
+        numberOfRestaurant += 1;
         menus.add(menu);
         employs.add(employ);
     }
@@ -39,17 +42,18 @@ public class Restaurant {
         employs.remove(employee);
     }
     public String createRestaurantDirectory() {
-        File dir = new File(Paths.get("").toAbsolutePath().toString() + "/database/" + this.id);
+        File dir = new File(Paths.get("").toAbsolutePath().toString() + "/database/" + "restaurant_" + this.id);
         dir.mkdir();
         return dir.getAbsolutePath();
     }
     public void createFileRestaurant(String path) {
         try {
-            FileWriter fw = new FileWriter("info.json");
+            FileWriter fw = new FileWriter( path + "/info.json");
             fw.write("{"+
-                    "\"name\":\"" + name + "\","
-                    + "\"address\":" + address
+                    "\"name\":\"" + this.name + "\","
+                    + "\"address\":\"" + this.address + "\""
                     + "}");
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
