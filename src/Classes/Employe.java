@@ -1,5 +1,6 @@
 package Classes;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -64,18 +65,18 @@ public class Employe {
     }
     public void createFileEmploye(String path, String name) {
         try {
-            System.out.println(this.firstName + this.lastName + this.role);
-            FileWriter fw = new FileWriter(path + "/" + name + ".txt");
-            fw.write("{"+
+            File file = new File(createDir(path + "/" + name + ".json"));
+            BufferedWriter buf = new BufferedWriter(new FileWriter(path + "/" + name + ".json"));
+            buf.append("{"+
                     "\"first-name\":\"" + this.firstName + "\","
                     + "\"last-name\":\"" + this.lastName + "\","
                     + "\"role\":\"" + this.role + "\","
                     + "\"date\":\"" + this.dateOfStartingJob + "\","
                     + "\"salary\":\"" + this.salary + "\""
                     + "}");
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -2,10 +2,12 @@ import java.io.File;
 import java.util.Scanner;
 import java.nio.file.Paths;
 import Commands.*;
+import Database.Database;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Database db = new Database();
         File database = new File(Paths.get("").toAbsolutePath().toString() + "/database");
         database.mkdir();
 

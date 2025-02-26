@@ -1,5 +1,6 @@
 package Classes;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -48,12 +49,13 @@ public class Restaurant {
     }
     public void createFileRestaurant(String path) {
         try {
-            FileWriter fw = new FileWriter( path + "/info.json");
-            fw.write("{"+
+            File file = new File(path + "/info.json");
+            BufferedWriter buf = new BufferedWriter(new FileWriter(file));
+            buf.append("{"+
                     "\"name\":\"" + this.name + "\","
                     + "\"address\":\"" + this.address + "\""
                     + "}");
-            fw.close();
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

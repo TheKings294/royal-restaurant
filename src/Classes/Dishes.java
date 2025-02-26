@@ -1,5 +1,6 @@
 package Classes;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -112,15 +113,15 @@ public class Dishes {
         return dir.getAbsolutePath();
     }
     public void createFileDishes(String path, String name) {
-        String ingrediant = "{";
+        String ingrediant = "";
         for (int i = 0; i < this.ingredients.length; i++) {
             ingrediant += this.ingredients[i];
-            ingrediant += ",";
+            ingrediant += ";";
         }
-        ingrediant += "}";
         try {
-            FileWriter fw = new FileWriter(path + "/" + name + ".txt");
-            fw.write("{"+
+            File file = new File(path + "/" + name + ".json");
+            BufferedWriter buf = new BufferedWriter(new FileWriter(file));
+            buf.append("{"+
                     "\"name\":\"" + this.name + "\","
                     + "\"description\":\"" + this.description+ "," + "\","
                     + "\"price\":\"" + this.price + "\","
@@ -132,8 +133,9 @@ public class Dishes {
                     + "\"kitchenType\":\"" + this.kitchenType + "\","
                     + "\"preparationTime\":\"" + this.preparationTime + "\","
                     + "\"specialPrice\":\"" + this.specialPrice + "\","
-                    + "\"ingrediant\":\"" + this.ingredients.toString() + "\""
+                    + "\"ingrediant\":\"" + ingrediant + "\""
                     + "}");
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

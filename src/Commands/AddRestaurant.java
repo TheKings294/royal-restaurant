@@ -13,18 +13,18 @@ public class AddRestaurant extends Command {
     }
     @Override
     public String getLabel() {
-        return "Add Classes.Restaurant";
+        return "Ajouter un Restaurant";
     }
     @Override
     public void execute() {
         scanner.skip("\n");
-        System.out.println("=======Classes.Restaurant Creation========");
+        System.out.println("=======Restaurant Creation========");
         System.out.println("Enter restaurant name: ");
         String name = scanner.nextLine();
         System.out.println("Enter restaurant address: ");
         String address = scanner.nextLine();
 
-        System.out.println("=======Classes.Menu Creation========");
+        System.out.println("=======Menu Creation========");
         System.out.println("Enter the menu name");
         String menuName = scanner.nextLine();
 
@@ -91,7 +91,7 @@ public class AddRestaurant extends Command {
 
         AtomicInteger i = new AtomicInteger(0);
         newRestaurant.getMenus().forEach(menuI -> {
-            String menuIName = Integer.toString(i.incrementAndGet());
+            String menuIName = Integer.toString(i.get());
             String newPath = menuI.createDirPerMenus(path, menuIName);
             System.out.println(path);
             menuI.createFileMenu(newPath, "info");

@@ -1,5 +1,6 @@
 package Classes;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,13 +41,14 @@ public class Menu {
     }
     public void createFileMenu(String path, String name) {
         try {
-            FileWriter file = new FileWriter(path + "/"+ name + ".json");
-            file.write("{" +
+            File file = new File(path + "/"+ name + ".json");
+            BufferedWriter buf = new BufferedWriter(new FileWriter(file));
+            buf.append("{" +
                     "\"name\":\"" + this.name + "\"," +
                     "\"date\":\"" + this.dateOfCreation.toString() + "\"," +
                     "\"menuType\":\"" + this.menuType + "\"" +
                     "}");
-            file.close();
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
