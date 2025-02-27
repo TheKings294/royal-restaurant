@@ -61,4 +61,7 @@ public class Restaurant {
         }
 
     }
+    public String getInfoRestaurant() {
+        return this.name + "," + this.address;
+    }
 }

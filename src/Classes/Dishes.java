@@ -123,7 +123,7 @@ public class Dishes {
             BufferedWriter buf = new BufferedWriter(new FileWriter(file));
             buf.append("{"+
                     "\"name\":\"" + this.name + "\","
-                    + "\"description\":\"" + this.description+ "," + "\","
+                    + "\"description\":\"" + this.description + "\","
                     + "\"price\":\"" + this.price + "\","
                     + "\"calories\":\"" + this.calories + "\","
                     + "\"category\":\"" + this.category + "\","
