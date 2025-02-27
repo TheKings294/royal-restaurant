@@ -33,6 +33,9 @@ public class Restaurant {
     public ArrayList<Menu> getMenus() {
         return menus;
     }
+    public void addMenus(Menu menu) {
+        menus.add(menu);
+    }
     public ArrayList<Employe> getEmploys() {
         return employs;
     }
@@ -62,6 +65,6 @@ public class Restaurant {
 
     }
     public String getInfoRestaurant() {
-        return this.name + "," + this.address;
+        return "name :" + this.name + "  " + "Address :" + this.address + "  " + this.id;
     }
 }

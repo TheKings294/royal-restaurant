@@ -17,6 +17,7 @@ public class Main {
             Command[] commands = {
                     new Commands.AddRestaurant(scanner),
                     new Commands.showRestaurants(db),
+                    new Commands.AddEmploye(db),
                     new Commands.Quit()
             };
 

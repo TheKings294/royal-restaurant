@@ -130,4 +130,7 @@ public class Database {
     public ArrayList<Restaurant> getRestaurants() {
         return restaurants;
     }
+    public Restaurant getRestaurant(int id) {
+        return restaurants.get(id);
+    }
 }
