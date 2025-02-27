@@ -18,6 +18,7 @@ public class Main {
                     new Commands.AddRestaurant(scanner),
                     new Commands.showRestaurants(db),
                     new Commands.AddEmploye(db),
+                    new AddMenus(db),
                     new Commands.Quit()
             };
 
