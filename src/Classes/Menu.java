@@ -1,9 +1,11 @@
+package Classes;
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Menu {
     public static int number = 0;
@@ -39,12 +41,14 @@ public class Menu {
     }
     public void createFileMenu(String path, String name) {
         try {
-            FileWriter file = new FileWriter(path + "/menus/" + name + ".json");
-            file.write("{"+
-                    "\"name\":\"" + name + "\","
-                    + "\"date\":" + dateOfCreation.toString() + "," + "\""
-                    + "\"menuType\":\"" + menuType + "\","
-                    + "}");
+            File file = new File(path + "/"+ name + ".json");
+            BufferedWriter buf = new BufferedWriter(new FileWriter(file));
+            buf.append("{" +
+                    "\"name\":\"" + this.name + "\"," +
+                    "\"date\":\"" + this.dateOfCreation.toString() + "\"," +
+                    "\"menuType\":\"" + this.menuType + "\"" +
+                    "}");
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

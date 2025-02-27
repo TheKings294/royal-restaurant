@@ -1,8 +1,10 @@
+package Classes;
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Employe {
     public static int number = 0;
@@ -63,17 +65,18 @@ public class Employe {
     }
     public void createFileEmploye(String path, String name) {
         try {
-            FileWriter fw = new FileWriter(path + "/" + name + ".json");
-            fw.write("{"+
-                    "\"first-name\":\"" + firstName + "\","
-                    + "\"last-name\":" + lastName + "\","
-                    + "\"role\":" + role + "\","
-                    + "\"date\":" + dateOfStartingJob + "\","
-                    + "\"salary\":" + salary + "\","
+            File file = new File(createDir(path + "/" + name + ".json"));
+            BufferedWriter buf = new BufferedWriter(new FileWriter(path + "/" + name + ".json"));
+            buf.append("{"+
+                    "\"first-name\":\"" + this.firstName + "\","
+                    + "\"last-name\":\"" + this.lastName + "\","
+                    + "\"role\":\"" + this.role + "\","
+                    + "\"date\":\"" + this.dateOfStartingJob + "\","
+                    + "\"salary\":\"" + this.salary + "\""
                     + "}");
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

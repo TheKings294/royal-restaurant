@@ -1,8 +1,10 @@
+package Classes;
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Dishes {
     private String name;
@@ -111,17 +113,17 @@ public class Dishes {
         return dir.getAbsolutePath();
     }
     public void createFileDishes(String path, String name) {
-        String ingrediant = "{";
+        String ingrediant = "";
         for (int i = 0; i < this.ingredients.length; i++) {
             ingrediant += this.ingredients[i];
-            ingrediant += ",";
+            ingrediant += ";";
         }
-        ingrediant += "}";
         try {
-            FileWriter fw = new FileWriter(path + "/" + name + ".json");
-            fw.write("{"+
+            File file = new File(path + "/" + name + ".json");
+            BufferedWriter buf = new BufferedWriter(new FileWriter(file));
+            buf.append("{"+
                     "\"name\":\"" + this.name + "\","
-                    + "\"description\":" + this.description+ "," + "\""
+                    + "\"description\":\"" + this.description + "\","
                     + "\"price\":\"" + this.price + "\","
                     + "\"calories\":\"" + this.calories + "\","
                     + "\"category\":\"" + this.category + "\","
@@ -130,9 +132,10 @@ public class Dishes {
                     + "\"status\":\"" + this.status + "\","
                     + "\"kitchenType\":\"" + this.kitchenType + "\","
                     + "\"preparationTime\":\"" + this.preparationTime + "\","
-                    + "\"specialPrice\":\"" + this.specialPrice + "\""
-                    + "\"ingrediant\":\"" + this.ingredients.toString() + "\""
+                    + "\"specialPrice\":\"" + this.specialPrice + "\","
+                    + "\"ingrediant\":\"" + ingrediant + "\""
                     + "}");
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

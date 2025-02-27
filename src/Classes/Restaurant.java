@@ -1,3 +1,6 @@
+package Classes;
+
+import java.io.BufferedWriter;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -16,7 +19,8 @@ public class Restaurant {
     public Restaurant(String name, String address, Menu menu, Employe employ) {
         this.name = name;
         this.address = address;
-
+        this.id = numberOfRestaurant;
+        numberOfRestaurant += 1;
         menus.add(menu);
         employs.add(employ);
     }
@@ -29,6 +33,9 @@ public class Restaurant {
     public ArrayList<Menu> getMenus() {
         return menus;
     }
+    public void addMenus(Menu menu) {
+        menus.add(menu);
+    }
     public ArrayList<Employe> getEmploys() {
         return employs;
     }
@@ -39,20 +46,25 @@ public class Restaurant {
         employs.remove(employee);
     }
     public String createRestaurantDirectory() {
-        File dir = new File(Paths.get("").toAbsolutePath().toString() + "/database/" + this.id);
+        File dir = new File(Paths.get("").toAbsolutePath().toString() + "/database/" + "restaurant_" + this.id);
         dir.mkdir();
         return dir.getAbsolutePath();
     }
     public void createFileRestaurant(String path) {
         try {
-            FileWriter fw = new FileWriter("info.json");
-            fw.write("{"+
-                    "\"name\":\"" + name + "\","
-                    + "\"address\":" + address
+            File file = new File(path + "/info.json");
+            BufferedWriter buf = new BufferedWriter(new FileWriter(file));
+            buf.append("{"+
+                    "\"name\":\"" + this.name + "\","
+                    + "\"address\":\"" + this.address + "\""
                     + "}");
+            buf.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+    public String getInfoRestaurant() {
+        return "name :" + this.name + "  " + "Address :" + this.address + "  " + this.id;
     }
 }
