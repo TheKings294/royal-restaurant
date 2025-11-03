@@ -62,6 +62,6 @@ public class AddMenus extends Command {
         System.out.println("Enter the special price: ");
         int specialPrice = sc.nextInt();
         sc.skip("\n");
-
+        
     }
 }
